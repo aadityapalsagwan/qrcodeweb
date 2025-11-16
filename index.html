@@ -104,7 +104,7 @@ function generateQR() {
   }
 
   // 👇 Render पर आपकी popup.html का URL
-  const popupUrl = `https://your-render-domain.onrender.com/popup.html?name=${encodeURIComponent(name)}&phone=${encodeURIComponent("+91" + phone)}`;
+  const popupUrl = `https://qrcodeweb-adi.onrender.com//popup.html?name=${encodeURIComponent(name)}&phone=${encodeURIComponent("+91" + phone)}`;
 
   QRCode.toCanvas(document.getElementById("qrCodeCanvas"), popupUrl, function (err) {
     if (err) console.error(err);
@@ -115,3 +115,4 @@ function generateQR() {
 
 </body>
 </html>
+
