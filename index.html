@@ -4,25 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QR Generator | Design by Aaditya Pal</title>
+
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
   <style>
     body { background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a); }
-    .glass {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .float {
-      animation: float 4s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+    .glass { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); }
+    .float { animation: float 4s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
   </style>
 </head>
+
 <body class="text-white">
+
   <!-- NAVBAR -->
   <header class="glass fixed top-0 left-0 w-full shadow-lg z-50">
     <nav class="max-w-6xl mx-auto p-4 flex justify-between items-center">
@@ -35,31 +30,36 @@
     </nav>
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <section class="pt-32 pb-12 text-center max-w-3xl mx-auto">
     <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Generate Smart Contact QR</h2>
-    <!-- <p class="text-lg opacity-80 mb-8">Scan → View Popup → Click Number → Dialer Opens Automatically</p> -->
   </section>
 
-  <!-- GENERATOR CARD -->
+  <!-- CARD -->
   <section class="flex justify-center px-4 pb-16">
     <div class="glass p-8 rounded-2xl max-w-lg w-full shadow-xl float">
+      
       <h3 class="text-2xl font-semibold mb-6 text-center">Enter Details</h3>
 
       <label class="block mb-2 font-medium">Full Name</label>
-      <input id="name" type="text" placeholder="John Doe" class="w-full p-3 rounded bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-blue-400 mb-4" />
+      <input id="name" type="text" placeholder="John Doe"
+        class="w-full p-3 rounded bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-blue-400 mb-4">
 
       <label class="block mb-2 font-medium">Mobile Number</label>
       <div class="flex items-center bg-gray-900 border border-gray-700 rounded p-2 mb-6">
         <span class="px-2 text-gray-300">+91</span>
-        <input id="phone" type="number" placeholder="9876543210" class="flex-1 p-2 bg-transparent outline-none" />
+        <input id="phone" type="number" placeholder="9876543210"
+          class="flex-1 p-2 bg-transparent outline-none">
       </div>
 
-      <button onclick="generateQR()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-lg font-semibold">Generate QR</button>
+      <button onclick="generateQR()"
+        class="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-lg font-semibold">Generate QR</button>
 
       <div id="qrContainer" class="text-center mt-8 hidden">
         <canvas id="qrCodeCanvas" class="mx-auto"></canvas>
-        <button onclick="downloadQR()" class="mt-4 w-full py-3 bg-green-600 hover:bg-green-700 rounded-lg">Download QR</button>
+
+        <button onclick="downloadQR()"
+          class="mt-4 w-full py-3 bg-green-600 hover:bg-green-700 rounded-lg">Download QR</button>
       </div>
     </div>
   </section>
@@ -84,14 +84,15 @@
 
       <div>
         <h3 class="text-xl font-bold mb-3">Contact</h3>
-        <p class="opacity-80"><a href="mailto:adipal9857@gmail.com" style="text-decoration: none;">contact@qrpro.com</a></p>
-        <p class="opacity-80" ><a href="tel:+919105880014" style="text-decoration: none;">+91 9105880014</a></p>
+        <p class="opacity-80"><a href="mailto:adipal9857@gmail.com">contact@qrpro.com</a></p>
+        <p class="opacity-80"><a href="tel:+919105880014">+91 9105880014</a></p>
       </div>
 
     </div>
-    <p class="text-center mt-10 opacity-70">© 2025 QR PRO — All Rights Reserved  | ❤️ Design by ; <a href="https://aadityapalsagwan-portfolio.onrender.com/" style="text-decoration: none;" target="_blank" rel="noopener noreferrer">Aaditya Pal</a></p>
+    <p class="text-center mt-10 opacity-70">© 2025 QR PRO — Design by 
+      <a href="https://aadityapalsagwan-portfolio.onrender.com/" target="_blank">Aaditya Pal</a>
+    </p>
   </footer>
-
 
 <script>
 function generateQR() {
@@ -103,13 +104,20 @@ function generateQR() {
     return;
   }
 
-  // 👇 Render पर आपकी popup.html का URL
+  // 👇 आपका popup.html URL
   const popupUrl = `https://qrcodeweb-adi.onrender.com/popup.html?name=${encodeURIComponent(name)}&phone=${encodeURIComponent("+91" + phone)}`;
 
   QRCode.toCanvas(document.getElementById("qrCodeCanvas"), popupUrl, function (err) {
-    if (err) console.error(err);
-    else document.getElementById("qrContainer").classList.remove("hidden");
+    if (!err) document.getElementById("qrContainer").classList.remove("hidden");
   });
+}
+
+function downloadQR() {
+  const canvas = document.getElementById("qrCodeCanvas");
+  const link = document.createElement("a");
+  link.href = canvas.toDataURL("image/png");
+  link.download = "qr-code.png";
+  link.click();
 }
 </script>
 
