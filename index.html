@@ -104,22 +104,59 @@ function generateQR() {
     return;
   }
 
-  // 👇 आपका popup.html URL
   const popupUrl = `https://qrcodeweb-adi.onrender.com/popup.html?name=${encodeURIComponent(name)}&phone=${encodeURIComponent("+91" + phone)}`;
 
-  QRCode.toCanvas(document.getElementById("qrCodeCanvas"), popupUrl, function (err) {
-    if (!err) document.getElementById("qrContainer").classList.remove("hidden");
+  const canvas = document.getElementById("qrCodeCanvas");
+
+  QRCode.toCanvas(canvas, popupUrl, async function (err) {
+    if (err) return console.error(err);
+
+    // 🔥 अब “CALL NOW” overlay add करेंगे
+    const ctx = canvas.getContext("2d");
+    ctx.font = "bold 18px Arial";
+    ctx.fillStyle = "blue";
+    ctx.textAlign = "center";
+
+    ctx.fillText("CALL NOW", canvas.width / 2, 30);
+
+    document.getElementById("qrContainer").classList.remove("hidden");
   });
 }
 
 function downloadQR() {
   const canvas = document.getElementById("qrCodeCanvas");
   const link = document.createElement("a");
-  link.href = canvas.toDataURL("image/png");
-  link.download = "qr-code.png";
+  const landscapeCanvas = document.createElement("canvas");
+
+  // ✔ Landscape बनाने के लिए थोड़ा बड़ा canvas
+  landscapeCanvas.width = canvas.width + 100;
+  landscapeCanvas.height = canvas.height + 100;
+
+  const ctx = landscapeCanvas.getContext("2d");
+
+  // Background
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, landscapeCanvas.width, landscapeCanvas.height);
+
+  // QR center align
+  const x = (landscapeCanvas.width - canvas.width) / 2;
+  const y = 60;
+
+  ctx.drawImage(canvas, x, y);
+
+  // ✔ Landscape में भी CALL NOW text
+  ctx.font = "bold 28px Arial";
+  ctx.fillStyle = "blue";
+  ctx.textAlign = "center";
+  ctx.fillText("CALL NOW", landscapeCanvas.width / 2, 40);
+
+  link.href = landscapeCanvas.toDataURL("image/png");
+  link.download = "qr-callnow-landscape.png";
   link.click();
 }
 </script>
 
+
 </body>
 </html>
+
