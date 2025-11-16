@@ -106,18 +106,18 @@ function generateQR() {
 
   const popupUrl = `https://qrcodeweb-adi.onrender.com/popup.html?name=${encodeURIComponent(name)}&phone=${encodeURIComponent("+91" + phone)}`;
 
-  const canvas = document.getElementById("qrCodeCanvas");
+  // const canvas = document.getElementById("qrCodeCanvas");
 
-  QRCode.toCanvas(canvas, popupUrl, async function (err) {
-    if (err) return console.error(err);
+  // QRCode.toCanvas(canvas, popupUrl, async function (err) {
+  //   if (err) return console.error(err);
 
  //   🔥 अब “CALL NOW” overlay add करेंगे
-    const ctx = canvas.getContext("2d");
-    ctx.font = "bold 35px Arial";
-    ctx.fillStyle = "black";
-    ctx.textAlign = "center";
+    // const ctx = canvas.getContext("2d");
+    // ctx.font = "bold 35px Arial";
+    // ctx.fillStyle = "black";
+    // ctx.textAlign = "center";
 
-    ctx.fillText("CALL NOW", canvas.width / 2, 30);
+    // ctx.fillText("CALL NOW", canvas.width / 2, 30);
 
     document.getElementById("qrContainer").classList.remove("hidden");
   });
@@ -159,6 +159,7 @@ function downloadQR() {
 
 </body>
 </html>
+
 
 
 
