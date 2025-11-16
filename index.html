@@ -111,13 +111,13 @@ function generateQR() {
   QRCode.toCanvas(canvas, popupUrl, async function (err) {
     if (err) return console.error(err);
 
-    // 🔥 अब “CALL NOW” overlay add करेंगे
-    // const ctx = canvas.getContext("2d");
-    // ctx.font = "bold 35px Arial";
-    // ctx.fillStyle = "black";
-    // ctx.textAlign = "center";
+    🔥 अब “CALL NOW” overlay add करेंगे
+    const ctx = canvas.getContext("2d");
+    ctx.font = "bold 35px Arial";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
 
-    // ctx.fillText("CALL NOW", canvas.width / 2, 30);
+    ctx.fillText("CALL NOW", canvas.width / 2, 30);
 
     document.getElementById("qrContainer").classList.remove("hidden");
   });
