@@ -108,19 +108,19 @@ function generateQR() {
 
   const canvas = document.getElementById("qrCodeCanvas");
 
-  QRCode.toCanvas(canvas, popupUrl, async function (err) {
-    if (err) return console.error(err);
+  // QRCode.toCanvas(canvas, popupUrl, async function (err) {
+  //   if (err) return console.error(err);
 
-    // 🔥 अब “CALL NOW” overlay add करेंगे
-    const ctx = canvas.getContext("2d");
-    ctx.font = "bold 18px Arial";
-    ctx.fillStyle = "blue";
-    ctx.textAlign = "center";
+  //   // 🔥 अब “CALL NOW” overlay add करेंगे
+  //   const ctx = canvas.getContext("2d");
+  //   ctx.font = "bold 35px Arial";
+  //   ctx.fillStyle = "black";
+  //   ctx.textAlign = "center";
 
-    ctx.fillText("CALL NOW", canvas.width / 2, 30);
+  //   ctx.fillText("CALL NOW", canvas.width / 2, 30);
 
-    document.getElementById("qrContainer").classList.remove("hidden");
-  });
+  //   document.getElementById("qrContainer").classList.remove("hidden");
+  // });
 }
 
 function downloadQR() {
@@ -145,8 +145,8 @@ function downloadQR() {
   ctx.drawImage(canvas, x, y);
 
   // ✔ Landscape में भी CALL NOW text
-  ctx.font = "bold 28px Arial";
-  ctx.fillStyle = "blue";
+  ctx.font = "bold 35px Arial";
+  ctx.fillStyle = "black";
   ctx.textAlign = "center";
   ctx.fillText("CALL NOW", landscapeCanvas.width / 2, 40);
 
@@ -159,4 +159,5 @@ function downloadQR() {
 
 </body>
 </html>
+
 
