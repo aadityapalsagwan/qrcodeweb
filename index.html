@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced QR Generator</title>
+  <title>QR Generator | Design by Aaditya Pal</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <style>
@@ -38,7 +38,7 @@
   <!-- HERO SECTION -->
   <section class="pt-32 pb-12 text-center max-w-3xl mx-auto">
     <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Generate Smart Contact QR</h2>
-    <p class="text-lg opacity-80 mb-8">Scan → View Popup → Click Number → Dialer Opens Automatically</p>
+    <!-- <p class="text-lg opacity-80 mb-8">Scan → View Popup → Click Number → Dialer Opens Automatically</p> -->
   </section>
 
   <!-- GENERATOR CARD -->
@@ -84,12 +84,12 @@
 
       <div>
         <h3 class="text-xl font-bold mb-3">Contact</h3>
-        <p class="opacity-80">contact@qrpro.com</p>
-        <p class="opacity-80">+91 98765 43210</p>
+        <p class="opacity-80"><a href="mailto:adipal9857@gmail.com" style="text-decoration: none;">contact@qrpro.com</a></p>
+        <p class="opacity-80" ><a href="tel:+919105880014" style="text-decoration: none;">+91 9105880014</a></p>
       </div>
 
     </div>
-    <p class="text-center mt-10 opacity-70">© 2025 QR PRO — All Rights Reserved</p>
+    <p class="text-center mt-10 opacity-70">© 2025 QR PRO — All Rights Reserved  | ❤️ Design by ; <a href="https://aadityapalsagwan-portfolio.onrender.com/" style="text-decoration: none;" target="_blank" rel="noopener noreferrer">Aaditya Pal</a></p>
   </footer>
 
 
@@ -104,7 +104,7 @@ function generateQR() {
   }
 
   // 👇 Render पर आपकी popup.html का URL
-  const popupUrl = `https://qrcodeweb-adi.onrender.com//popup.html?name=${encodeURIComponent(name)}&phone=${encodeURIComponent("+91" + phone)}`;
+  const popupUrl = `https://qrcodeweb-adi.onrender.com/popup.html?name=${encodeURIComponent(name)}&phone=${encodeURIComponent("+91" + phone)}`;
 
   QRCode.toCanvas(document.getElementById("qrCodeCanvas"), popupUrl, function (err) {
     if (err) console.error(err);
@@ -115,4 +115,3 @@ function generateQR() {
 
 </body>
 </html>
-
